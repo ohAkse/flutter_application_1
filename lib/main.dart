@@ -27,7 +27,11 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  Color setSelectedColor({required bool bSelectedColor}) {
+    return bSelectedColor == true ? Colors.blue : Colors.grey;
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -57,14 +61,10 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         alignment: Alignment.topCenter,
                         child: TabPageSelector(
-                          color: DefaultTabController.of(context).index == 1
-                              ? Colors.blue[300]
-                              : Colors.grey[400],
-                          selectedColor:
-                              DefaultTabController.of(context).index == 1
-                                  ? Colors.white
-                                  : Colors.blue,
+                          color: setSelectedColor(bSelectedColor: false),
+                          selectedColor: setSelectedColor(bSelectedColor: true),
                           indicatorSize: 8,
+                          borderStyle: BorderStyle.none,
                         ),
                       ),
                     ],
@@ -141,7 +141,7 @@ class FirstTab extends StatelessWidget {
           ],
         ),
         const Padding(
-          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 10),
+          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
           child: Row(children: [
             SizedBox(height: 20),
             ImageIcon(NetworkImage("https://i.ibb.co/hxNbZ8p/shazam.png")),
@@ -149,23 +149,36 @@ class FirstTab extends StatelessWidget {
               "Shazam",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            Divider(),
+            Divider(height: 10, thickness: 10, color: Colors.red),
           ]),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 10),
-          child: Row(children: [
-            SizedBox(height: 20),
-            Icon(Icons.person_rounded),
-            Text(
-              "아티스트",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            Divider(),
-          ]),
+        const Divider(
+          color: Colors.grey, // 구분선의 색상 설정
+          // 구분선의 두께 설정
+          indent: 20, // 구분선의 시작 위치에서의 왼쪽 간격 설정
+          endIndent: 20, // 구분선의 끝 위치에서의 오른쪽 간격 설정
         ),
         const Padding(
-          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 10),
+          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
+          child: Row(
+            children: [
+              SizedBox(height: 10),
+              Icon(Icons.person_rounded),
+              Text(
+                "아티스트",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
+        const Divider(
+          color: Colors.grey, // 구분선의 색상 설정
+          // 구분선의 두께 설정
+          indent: 20, // 구분선의 시작 위치에서의 왼쪽 간격 설정
+          endIndent: 20, // 구분선의 끝 위치에서의 오른쪽 간격 설정
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
           child: Row(children: [
             SizedBox(height: 20),
             Icon(Icons.music_note),
@@ -176,8 +189,14 @@ class FirstTab extends StatelessWidget {
             Divider(),
           ]),
         ),
+        const Divider(
+          color: Colors.grey, // 구분선의 색상 설정
+          // 구분선의 두께 설정
+          indent: 20, // 구분선의 시작 위치에서의 왼쪽 간격 설정
+          endIndent: 20, // 구분선의 끝 위치에서의 오른쪽 간격 설정
+        ),
         const Padding(
-          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 10),
+          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 35),
           child: Row(
             children: [
               SizedBox(height: 20),
@@ -187,6 +206,12 @@ class FirstTab extends StatelessWidget {
               )
             ],
           ),
+        ),
+        const Divider(
+          color: Colors.grey, // 구분선의 색상 설정
+          // 구분선의 두께 설정
+          indent: 20, // 구분선의 시작 위치에서의 왼쪽 간격 설정
+          endIndent: 20, // 구분선의 끝 위치에서의 오른쪽 간격 설정
         ),
         Expanded(
           child: GridView.builder(
